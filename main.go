@@ -10,7 +10,7 @@ import (
 	"gopkg.in/AlecAivazis/survey.v1"
 )
 
-const tempPath = "./templates"
+const tempPath string = "./templates"
 
 var tempMap = map[string]map[string]string{
 	"gitignore": {
@@ -37,10 +37,10 @@ func makeFile(cwd string, input string, output string) {
 	}
 }
 
-func makeFiles(fileNames []string) {
+func makeFiles(fileNames *[]string) {
 	cwd, _ := os.Getwd()
 
-	for _, value := range fileNames {
+	for _, value := range *fileNames {
 		temp := tempMap[value]
 		makeFile(cwd, temp["input"], temp["output"])
 	}
@@ -65,7 +65,7 @@ func appAction(c *cli.Context) error {
 		return err
 	}
 
-	makeFiles(tempFiles)
+	makeFiles(&tempFiles)
 
 	return nil
 }
