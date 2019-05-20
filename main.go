@@ -46,16 +46,6 @@ func makeFiles(fileNames []string) {
 	}
 }
 
-func keys(m map[string]string) []string {
-	ks := []string{}
-
-	for k := range m {
-		ks = append(ks, k)
-	}
-
-	return ks
-}
-
 func appAction(c *cli.Context) error {
 	tempFiles := []string{}
 	keys := []string{}
